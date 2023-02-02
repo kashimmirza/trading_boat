@@ -1,0 +1,8 @@
+{% for stock in stocks %}
+    <p>Symbol: {{ stock.symbol }}</p>
+    <p>Current Price: {{ stock.current_price }}</p>
+    <p>Volume: {{ stock.volume }}</p>
+    <p>Latest Trading Day: {{ stock.latest_trading_day }}</p>
+    <p>Latest Update: {{ stock.latest_update }}</p>
+    <hr>
+{% endfor %}

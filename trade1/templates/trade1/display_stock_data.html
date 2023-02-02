@@ -1,0 +1,60 @@
+{%extends 'trade1/base.html'%}
+{%load static %}
+
+
+{% block content %}
+  
+  <p>Welcome to tradingwebsite</p>
+  <h2>Dynamic content</h2>
+  
+  
+
+
+<table>
+    <>
+        <th>Symbol</th>
+        <th>Current Price</th>
+        <th>Difference</th>
+        <th>Next Target Price</th>
+        <th># Time Hit Target Price</th>
+        <th># Time Hit Average Price</th>
+        <th># Time Hit Median Price</th>
+        <th>Lowest Price</th>
+        <th>Average Price</th>
+        <th>Median Price</th>
+        <th>Difference (high-low)/2</th>
+        <th>Highest Price</th>
+        <th>Option Suggestion</th>
+        <th>Volume</th>
+        <th>Option Price for Suggested Target Price</th>
+        <th>Option Price for Suggested Average Price</th>
+        <th>Option Price for Median Price</th>
+        <th>Next Earning Date</th>
+        <th>Next Earning Time</th>
+    
+    {% for stock in stocks %}
+    <tr>
+        <td>{{ stock.symbol }}</td>
+        <td>{{ stock.current_price }}</td>
+        <td>{{ stock.difference }}</td>
+        <td>{{ stock.next_target_price }}</td>
+        <td>{{ stock.time_hit_target_price }}</td>
+        <td>{{ stock.time_hit_average_price }}</td>
+        <td>{{ stock.time_hit_median_price }}</td>
+        <td>{{ stock.lowest_price }}</td>
+        <td>{{ stock.average_price }}</td>
+        <td>{{ stock.median_price }}</td>
+        <td>{{ stock.difference_high_low_half }}</td>
+        <td>{{ stock.highest_price }}</td>
+        <td>{{ stock.option_suggestion }}</td>
+        <td>{{ stock.volume }}</td>
+        <td>{{ stock.option_price_suggested_target }}</td>
+        <td>{{ stock.option_price_suggested_average }}</td>
+        <td>{{ stock.option_price_median }}</td>
+        <td>{{ stock.next_earning_date }}</td>
+        <td>{{ stock.next_earning_time }}</td>
+    </tr>
+    {% endfor %}
+     </ul>
+     {% endblock %}
+</table>

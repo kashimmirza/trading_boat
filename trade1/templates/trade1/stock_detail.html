@@ -1,0 +1,26 @@
+<table>
+  <tr>
+    <th>Earning Date</th>
+    <th>Earning Time</th>
+    <th>Analysis Confidence</th>
+    <th>EPS Estimate</th>
+    <th>Market Cap</th>
+    <th>Reported EPS</th>
+    <th>Surprise</th>
+    <th>Surprise %</th>
+    <th>Revenue Forecast</th>
+    <th>Revenue Actual</th>
+    <th>Stock Price Before Earning</th>
+    <th>Stock Price After Earning</th>
+    <th>Implied Volatility</th>
+  </tr>
+  {% for history in earnings_history %}
+  <tr>
+    <td>{{ history.earning_date }}</td>
+    <td>{{ history.earning_time }}</td>
+    <td>{{ history.analysis_confidence }}</td>
+    <td>{{ history.eps_estimate }}</td>
+    <td>{{ history.mkt_cap }}</td>
+    <td>{{ history.reported_eps }}</td>
+    <td>{{ history.surprise }}</td>
+    <td>{{ history.surprise_percentage }}</td>
