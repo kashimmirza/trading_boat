@@ -1,4 +1,8 @@
-from celery import task
+from celery import shared_task
+from celery import Task
+from yahoo_fin.stock_info import *
+from threading import Thread
+import queue
 
 
 @task
@@ -34,3 +38,31 @@ def get_stock_data(symbol):
     response = requests.get(url)
     data = json.loads(response.text)
     return data
+
+
+"""
+@shared_task(bind=True)
+def update_stock(self, stockpicker):
+    date = {}
+    available_stocks = tickers_nifty50()
+    for i in stockpicker:
+        if i in stockpicker:
+            if i in available_stocks:
+                pass
+            else:
+                stockpicker.remove(i)
+        n_threads = len(stockpicker)
+        thread_list = []
+        que = queue.Queue()
+        for i in range(n_threads):
+            thread = Thread(target=lambda q, arg1: q.put(
+                {stockpicker[i]: get_quote_table(arg1)}), args=(que, stockpicker))
+            thread_list.append(thread)
+            thread_list[i].start()
+        for thread in thread_list:
+            thread.join()
+        while not que.empty():
+            result = que.get()
+            data.update(result)
+        return 'Done'
+"""

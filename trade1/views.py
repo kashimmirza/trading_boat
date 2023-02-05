@@ -10,6 +10,17 @@ import yfinance as yf
 from django.http.response import HttpResponse
 
 from .models import Stock
+from django.http import JsonResponse
+"""
+def get_stock_data(request):
+    symbol = request.GET.get('symbol')
+    if symbol:
+        data = get_stock_data(symbol)
+        save_stock_data(data)
+        plot_stock_data(symbol)
+        return JsonResponse(data)
+"""
+
 
 '''
 def get_stock_data(symbol):
@@ -20,19 +31,26 @@ def get_stock_data(symbol):
     return data
 '''
 
-
+"""
 def stockPicker(request):
     stock_picker = tickers_nifty50()
     print(stock_picker)
     return render(request, 'trade1/stockpicker.html', {'stockpicker': stock_picker})
 
+"""
+"""
+def get_NAME(request):
+    s = request.post()
+    print(s)
+"""
 
-def get_stock_data(symbol):
+
+def get_stock_data(request, symbol):
     stock = yf.Ticker(symbol)
     data = stock.info
     print(data)
 
-    return data
+    return render(request, 'trade1/display_stock_data.html', {'data': data})
 
 
 def save_stock_data(data):
@@ -51,7 +69,7 @@ def save_stock_data(data):
 def stock_data(request):
     symbol = request.GET.get('symbol')
     if symbol:
-        data = get_stock_data(symbol)
+        data = get_stock_data(request, symbol)
         save_stock_data(data)
     stocks = Stock.objects.all()
     return render(request, 'stock_data.html', {'stocks': stocks})
@@ -76,19 +94,21 @@ def analyze_stock_data(request):
     return render(request, 'trade1/analyze_stock_data.html', {'stocks': stocks})
 
 
-def display_stock_data(request):
+def display_stock_data(request, symbol):
     stocks = Stock.objects.all()
     return render(request, 'trade1/display_stock_data.html', {'stocks': stocks})
 
 # views.py
 
 
+"""
 def get_stock_data(symbol):
     API_KEY = 'YOUR_API_KEY'
     url = f'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={symbol}&apikey={API_KEY}'
     response = requests.get(url)
     data = json.loads(response.text)
     return data
+"""
 
 
 def save_stock_data(data):
